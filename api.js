@@ -3,8 +3,9 @@ const search = () => {
     const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
     fetch(urlSearch)
         .then(res => res.json())
-        .then(data => { loadMeals(data.meals); searchData.value = '' })
+        .then(data => { loadMeals(data.meals);})
         .catch(err => { console.log(err) });
+    searchData.value = '';
 }
 
 const mealDetailsByID = (id, foodContainer) => {
