@@ -3,7 +3,7 @@ const search = () => {
     const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
     fetch(urlSearch)
         .then(res => res.json())
-        .then(data => { searchData.value = ''; loadMeals(data.meals) })
+        .then(data => { loadMeals(data.meals); searchData.value = '' })
         .catch(err => { console.log(err) });
 }
 
