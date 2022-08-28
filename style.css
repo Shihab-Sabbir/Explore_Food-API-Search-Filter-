@@ -35,7 +35,7 @@
     overflow: auto;
 }
 .modalBody{
-    max-height: 60%;
+    height: 60%;
 }
 .modalImage{
     max-height: 40%;
