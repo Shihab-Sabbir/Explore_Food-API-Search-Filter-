@@ -51,9 +51,14 @@
     </header>
     <main>
         <section class="container my-5">
-            <div>
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="food-container">
-                </div>
+            <div class="text-center d-none text-white fw-bolder fs-4" id="noData">Opps ! No Food Found <i
+                    class="fa-solid fa-face-disappointed text-warning"></i> </div>
+            <div id="loading" class="d-flex justify-content-center align-items-center">
+                <div class="spinner-border text-warning " role="status"></div>
+                <span class="ps-5 text-white fw-bolder fs-4">Foods are Loading....</span>
+            </div>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4" id="food-container">
+            </div>
         </section>
         <section>
             <!-- The Modal -->

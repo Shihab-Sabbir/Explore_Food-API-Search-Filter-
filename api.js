@@ -1,8 +1,20 @@
+function isLoading(dataLoading) {
+    const loading = document.getElementById('loading');
+    if (dataLoading) { loading.classList.remove('d-none'); }
+    else { loading.classList.add('d-none'); }
+}
+function isSearchData(searchValue) {
+    const noData = document.getElementById('noData');
+    const foodContainer = document.getElementById('food-container');
+    if (searchValue) { noData.classList.add('d-none'); foodContainer.classList.remove('d-none'); }
+    else { noData.classList.remove('d-none'); foodContainer.classList.add('d-none'); }
+}
+
 const mealDetailsByID = (id, foodContainer) => {
     let mealId = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     fetch(mealId).then(res => res.json()).then(data => {
         const { strMealThumb, strMeal, strCategory, strArea, strYoutube } = data.meals[0];
-
+        isLoading(false);
         const mealDiv = document.createElement('div');
         mealDiv.classList.add('col');
         mealDiv.innerHTML = `<div class="card">
@@ -23,6 +35,8 @@ const mealDetailsByID = (id, foodContainer) => {
 }
 
 const loadMeals = (meals) => {
+    isLoading(true);
+    noData.classList.add('d-none');
     const foodContainer = document.getElementById('food-container');
     foodContainer.innerHTML = '';
     for (const meal of meals) {
@@ -43,11 +57,14 @@ function search() {
     const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
     fetch(urlSearch)
         .then(res => res.json())
-        .then(data => { console.log(data); loadMeals(data.meals, searchData) })
+        .then(data => { if (data.meals) { isLoading(true); isSearchData(true); loadMeals(data.meals) } else { isSearchData(false) }; })
         .catch(err => { console.log(err) });
 
 }
 
 function loadWindow() {
     location.reload();
+    isLoading(true);
 }
+
+isLoading(true);
