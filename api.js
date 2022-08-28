@@ -22,7 +22,8 @@ const mealDetailsByID = (id, foodContainer) => {
     });
 }
 
-const loadMeals = (meals, searchData) => {
+const loadMeals = (meals) => {
+    let searchData = document.getElementById('searchInput');
     searchData.value = '';
     const foodContainer = document.getElementById('food-container');
     foodContainer.innerHTML = '';
