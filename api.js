@@ -47,6 +47,6 @@ function search() {
 
 }
 
-function loadWindow() {
-    location.reload();
-}
+// function loadWindow() {
+//     location.reload();
+// }
