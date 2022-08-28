@@ -1,4 +1,3 @@
-
 const mealDetailsByID = (id, foodContainer) => {
     let mealId = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     fetch(mealId).then(res => res.json()).then(data => {
@@ -23,7 +22,8 @@ const mealDetailsByID = (id, foodContainer) => {
     });
 }
 
-const loadMeals = (meals) => {
+const loadMeals = (meals, searchData) => {
+    searchData.value = '';
     const foodContainer = document.getElementById('food-container');
     foodContainer.innerHTML = '';
     for (const meal of meals) {
@@ -38,15 +38,14 @@ fetch(url)
     .catch(err => { console.log(err) });
 
 
-const search = () => {
+function search() {
     let searchData = document.getElementById('searchInput');
-    window.alert(searchData.value);
     const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
     fetch(urlSearch)
         .then(res => res.json())
-        .then(data => { console.log(data); loadMeals(data.meals) })
+        .then(data => { console.log(data); loadMeals(data.meals, searchData) })
         .catch(err => { console.log(err) });
-    searchData.value = '';
+
 }
 
 function loadWindow() {
