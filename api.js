@@ -38,6 +38,7 @@ fetch(url)
 
 
 function search() {
+    this.event.preventDefault();
     let searchData = document.getElementById('searchInput');
     const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
     fetch(urlSearch)
@@ -47,6 +48,6 @@ function search() {
 
 }
 
-// function loadWindow() {
-//     location.reload();
-// } nn
+function loadWindow() {
+    location.reload();
+}
