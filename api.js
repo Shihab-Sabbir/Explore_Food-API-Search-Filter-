@@ -1,3 +1,12 @@
+const search = () => {
+    let searchData = document.getElementById('searchInput');
+    const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
+    fetch(urlSearch)
+        .then(res => res.json())
+        .then(data => { searchData.value = ''; loadMeals(data.meals) })
+        .catch(err => { console.log(err) });
+}
+
 const mealDetailsByID = (id, foodContainer) => {
     let mealId = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`
     fetch(mealId).then(res => res.json()).then(data => {
@@ -36,14 +45,7 @@ const loadMeals = (meals) => {
     }
 }
 
-const search = () => {
-    let searchData = document.getElementById('searchInput');
-    const urlSearch = `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchData.value}`;
-    fetch(urlSearch)
-        .then(res => res.json())
-        .then(data => { searchData.value = ''; loadMeals(data.meals) })
-        .catch(err => { console.log(err) });
-}
+
 
 function loadWindow() {
     location.reload();
